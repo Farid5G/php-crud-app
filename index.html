@@ -1,0 +1,40 @@
+<form action="">
+    <input type='submit'>
+</form>
+
+elseif($isDel){
+    echo '<div class="container">
+    <div class="my-4 row d-flex justify-content-center bg-success">
+    <div class="col-md-5 align-items-center">
+    <form action="index.php" method = "post">
+    <div class="mb-3 ">
+    <label for="exampleFormControlInput1" class="form-label">Notes Title
+    <small>.....(You Cannot Change the title)</small></label>
+    <input type="text" name ="title" class="form-control" id="exampleFormControlInput1" value = "' . $ntitle . '">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Notes Description</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name = "desc"  >' . $description .'</textarea>
+    </div>
+    
+    <button type="submit" name= "save" class="btn btn-primary">Confirm Delete</button>
+    </form>
+    </div>
+    </div>
+    </div>';
+  }
+
+
+  <?php
+$isDel = false;
+require 'components/dbconnection.php';
+if(isset($_GET['title'])){
+$title = $_GET['title'];
+$query = "DELETE FROM notes WHERE ntitle = '$title'";
+$result = mysqli_query($conn,$query);
+if($result){
+  $isDel = true;
+  
+}
+}
+?>
